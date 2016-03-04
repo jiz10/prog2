@@ -1,0 +1,58 @@
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log opened at 2016-03-03 13:09:52
+project --topLevelPackage ar.com.edu.um --projectName prueba6 --java 6 --packaging WAR
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log closed at 2016-03-03 13:09:53
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log opened at 2016-03-03 13:12:58
+hint
+jpa setup --database MYSQL --provider HIBERNATE --databaseName prueba6 --hostName localhost --userName root
+entity jpa --class ar.com.edu.um.domain.Negocio --testAutomatically
+entity jpa --class ar.com.edu.um.domain.Tag --testAutomatically
+field string --fieldName nombre_tag --notNull
+focus --class ~.domain.Negocio
+field string --fieldName nya
+web mvc setup 
+focus --class ~.domain.Negocio
+field set --fieldName tags --type ~.domain.Tag --cardinality MANY_TO_MANY
+focus --class ~.domain.Tag
+field set --fieldName negocios --type ~.domain.Negocio --cardinality MANY_TO_MANY --mappedBy tags
+web mvc all --package ar.com.edu.um.web
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log closed at 2016-03-03 13:28:24
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log opened at 2016-03-03 13:39:08
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log closed at 2016-03-03 14:17:10
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log opened at 2016-03-03 14:19:30
+focus --class ~.domain.Negocio
+field string --fieldName domicilio
+field string --fieldName email
+field number --fieldName telefono --type int
+finder list --class ~.domain.Negocio --filter tags
+finder list --class ~.domain.Negocio --filter telefono
+find list
+finder list --class ~.domain.Negocio --depth 3
+// [failed] finder list --class ~.domain.Negocio --depth 4 --filter nya
+finder add --class ~.domain.Negocio --finderName findNegociosByNyaEqualsOrDomicilioEqualsOrEmailEqualsOrTelefonoEquals
+controller class --class ~.web.ControladorBuscadorNegocios --preferredMapping /buscadornegocios
+web mvc all --package ar.com.edu.um.web
+web mvc view --viewName formulario --title Formulario --path /buscadornegocio
+web mvc all --package ar.com.edu.um.web
+web mvc view --viewName formulario --title Formulario --path /buscadornegocios
+web mvc jquery setup
+web mvc jquery all
+// [failed] web mvc bootstrap setup
+web mvc bootstrap setup
+web mvc bootstrap update
+jpa gvnix setup
+web mvc finder all
+finder list --class ~.domain.Negocio --filter tags
+// [failed] finder list --class ~.domain.Negocio --filter tags --depth 4
+finder list --class ~.domain.Negocio --filter tags --depth 3
+finder add --class ~.domain.Negocio --finderName findNegociosByNyaEqualsOrDomicilioEqualsOrEmailEqualsOrTelefonoEqualsOrTags
+web mvc finder all
+web mvc all --package ar.com.edu.um.web
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log closed at 2016-03-04 11:10:32
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log opened at 2016-03-04 17:07:45
+hint
+focus --class ~.domain.Negocio
+finder list --class ~.domain.Negocio --depth 2
+finder add --finderName findNegociosByNyaEqualsOrEmailEquals
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log closed at 2016-03-04 18:20:05
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log opened at 2016-03-04 18:31:09
+// Spring Roo 1.3.2.RELEASE [rev 8c2549b] log closed at 2016-03-04 19:15:34

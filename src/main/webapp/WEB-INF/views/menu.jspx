@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_tag" z="zbrDBteXk3LlkQMQy3xXpSv2428=">
+            <menu:item id="i_tag_new" messageCode="global_menu_new" url="/tags?form" z="c2MR5d7dttBSgnPxMMH7oOEDl6Q="/>
+            <menu:item id="i_tag_list" messageCode="global_menu_list" url="/tags?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HsTcxZ80PNENgslZ1+b/pv8MYug="/>
+        </menu:category>
+        <menu:category id="c_negocio" z="nHdMl3TLtO5frwVf8yy813332Sc=">
+            <menu:item id="i_negocio_new" messageCode="global_menu_new" url="/negocios?form" z="kcbWGxjl9RwhsvtJxVbc1wgQ6Y0="/>
+            <menu:item id="i_negocio_list" messageCode="global_menu_list" url="/negocios?page=1&amp;size=${empty param.size ? 10 : param.size}" z="NLRAx8MM37gCpvu3+4wzjOYb+AM="/>
+            <menu:item id="fi_negocio_nyaequalsordomicilioequalsoremailequalsortelefonoequals" messageCode="global_menu_find" url="/negocios?find=ByNyaEqualsOrDomicilioEqualsOrEmailEqualsOrTelefonoEquals&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="qFjcnVo2brq3ZxazPU6IQJJmpAU="/>
+            <menu:item id="fi_negocio_nyaequalsordomicilioequalsoremailequalsortelefonoequalsortags" messageCode="global_menu_find" url="/negocios?find=ByNyaEqualsOrDomicilioEqualsOrEmailEqualsOrTelefonoEqualsOrTags&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="rbcTRdAEEJ7hoSqwjeX81Ld5IN4="/>
+            <menu:item id="fi_negocio_nyaequalsoremailequals" messageCode="global_menu_find" url="/negocios?find=ByNyaEqualsOrEmailEquals&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="azlCaP+TYfOWAno0fUB1Jyc0d74="/>
+        </menu:category>
+        <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+            <menu:item id="i_controller__buscadornegociosindex_id" messageCode="global_generic" url="/buscadornegocios/index" z="nA6VUljWprZwjfVH0Y6EMeHBetw="/>
+        </menu:category>
+        <menu:category id="c_view" z="HjmI4Chx/kBYfS/6HjBLbCA+XpU=">
+            <menu:item id="i_view___buscadornegociosformulario_id" messageCode="global_generic" url="//buscadornegocios/formulario" z="zza7HPLW0qNG3OB5THA7763izhc="/>
+        </menu:category>
+    </menu:menu>
+</div>
