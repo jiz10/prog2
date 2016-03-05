@@ -47,13 +47,56 @@ privileged aspect Negocio_Roo_Finder {
         return ((Long) q.getSingleResult());
     }
     
+    
+    //MODIFICADO
     public static Long Negocio.countFindNegociosByNyaEqualsOrEmailEquals(String nya, String email) {
-        if (nya == null || nya.length() == 0) throw new IllegalArgumentException("The nya argument is required");
-        if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
-        EntityManager em = Negocio.entityManager();
-        TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Negocio AS o WHERE o.nya = :nya  OR o.email = :email", Long.class);
-        q.setParameter("nya", nya);
-        q.setParameter("email", email);
+       // if (nya == null || nya.length() == 0) throw new IllegalArgumentException("The nya argument is required");
+       // if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
+    	StringBuilder query = new StringBuilder("SELECT COUNT(o) FROM Negocio AS o ");
+    	StringBuilder whereClause = new StringBuilder();
+    	
+    	if (nya == null || nya.length() == 0){
+    		nya = nya.replace('*', '%');
+    		if (nya.charAt(0) != '%') {
+    		nya = "%" + nya;
+    		}
+    		if (nya.charAt(nya.length() - 1) != '%') {
+    			nya = nya + "%";
+    		}
+    		
+    		whereClause.append(" WHERE o.nya = :nya");
+    		
+    	}
+    	
+    	if (email != null && email.length() > 0) {
+    		email = email.replace('*', '%');
+    		if (email.charAt(0) != '%') {
+    			email = "%" + email;
+    		}
+    		if (email.charAt(email.length() - 1) != '%') {
+    		email = email + "%";
+    		}
+    		if (whereClause.length() > 0) {
+    		whereClause.append(" OR o.email = :email");
+    		} else {
+    		whereClause.append(" WHERE o.email = :email");
+    		}
+    	}
+    	query.append(whereClause);
+    		
+    	
+    	EntityManager em = Negocio.entityManager();
+        //TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Negocio AS o WHERE o.nya = :nya  OR o.email = :email", Long.class);
+        TypedQuery q = em.createQuery(query.toString(), Long.class);
+
+        if (nya == null || nya.length() == 0){
+        	q.setParameter("nya", nya);
+        }
+        
+        if (email == null || email.length() == 0){
+        	q.setParameter("email", email);
+        }
+        
         return ((Long) q.getSingleResult());
     }
     
@@ -142,30 +185,123 @@ privileged aspect Negocio_Roo_Finder {
         return q;
     }
     
+    //MODIFICADO
     public static TypedQuery<Negocio> Negocio.findNegociosByNyaEqualsOrEmailEquals(String nya, String email) {
-        if (nya == null || nya.length() == 0) throw new IllegalArgumentException("The nya argument is required");
-        if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
-        EntityManager em = Negocio.entityManager();
-        TypedQuery<Negocio> q = em.createQuery("SELECT o FROM Negocio AS o WHERE o.nya = :nya  OR o.email = :email", Negocio.class);
-        q.setParameter("nya", nya);
-        q.setParameter("email", email);
+        //if (nya == null || nya.length() == 0) throw new IllegalArgumentException("The nya argument is required");
+        //if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
+    	StringBuilder query = new StringBuilder("SELECT o FROM Negocio AS o ");
+    	StringBuilder whereClause = new StringBuilder();
+    	
+    	if (nya == null || nya.length() == 0){
+    		nya = nya.replace('*', '%');
+    		if (nya.charAt(0) != '%') {
+    		nya = "%" + nya;
+    		}
+    		if (nya.charAt(nya.length() - 1) != '%') {
+    			nya = nya + "%";
+    		}
+    		
+    		whereClause.append(" WHERE o.nya = :nya");
+    		
+    	}
+    	
+    	if (email != null && email.length() > 0) {
+    		email = email.replace('*', '%');
+    		if (email.charAt(0) != '%') {
+    			email = "%" + email;
+    		}
+    		if (email.charAt(email.length() - 1) != '%') {
+    		email = email + "%";
+    		}
+    		if (whereClause.length() > 0) {
+    		whereClause.append(" OR o.email = :email");
+    		} else {
+    		whereClause.append(" WHERE o.email = :email");
+    		}
+    	}
+    	query.append(whereClause);
+    	
+    	
+    	
+    	
+    	EntityManager em = Negocio.entityManager();
+        //TypedQuery<Negocio> q = em.createQuery("SELECT o FROM Negocio AS o WHERE o.nya = :nya  OR o.email = :email", Negocio.class);
+        TypedQuery<Negocio> q = em.createQuery(query.toString(), Negocio.class);
+
+        if (nya == null || nya.length() == 0){
+        	q.setParameter("nya", nya);
+        }
+        
+        if (email == null || email.length() == 0){
+        	q.setParameter("email", email);
+        }
         return q;
     }
     
+    //MODIFICADO
     public static TypedQuery<Negocio> Negocio.findNegociosByNyaEqualsOrEmailEquals(String nya, String email, String sortFieldName, String sortOrder) {
-        if (nya == null || nya.length() == 0) throw new IllegalArgumentException("The nya argument is required");
-        if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
-        EntityManager em = Negocio.entityManager();
-        StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Negocio AS o WHERE o.nya = :nya  OR o.email = :email");
-        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+        //if (nya == null || nya.length() == 0) throw new IllegalArgumentException("The nya argument is required");
+        //if (email == null || email.length() == 0) throw new IllegalArgumentException("The email argument is required");
+    	StringBuilder query = new StringBuilder("SELECT o FROM Negocio AS o ");
+    	StringBuilder whereClause = new StringBuilder();
+    	
+    	if (nya == null || nya.length() == 0){
+    		nya = nya.replace('*', '%');
+    		if (nya.charAt(0) != '%') {
+    		nya = "%" + nya;
+    		}
+    		if (nya.charAt(nya.length() - 1) != '%') {
+    			nya = nya + "%";
+    		}
+    		
+    		whereClause.append(" WHERE o.nya = :nya");
+    		
+    	}
+    	
+    	if (email != null && email.length() > 0) {
+    		email = email.replace('*', '%');
+    		if (email.charAt(0) != '%') {
+    			email = "%" + email;
+    		}
+    		if (email.charAt(email.length() - 1) != '%') {
+    		email = email + "%";
+    		}
+    		if (whereClause.length() > 0) {
+    		whereClause.append(" OR o.email = :email");
+    		} else {
+    		whereClause.append(" WHERE o.email = :email");
+    		}
+    	}
+    	query.append(whereClause);
+    	
+    	EntityManager em = Negocio.entityManager();
+        //StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Negocio AS o WHERE o.nya = :nya  OR o.email = :email");
+        
+    	
+    	/*if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
             queryBuilder.append(" ORDER BY ").append(sortFieldName);
             if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
                 queryBuilder.append(" ").append(sortOrder);
             }
+        }*/
+    	
+    	if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            query.append(" ORDER BY ").append(sortFieldName);
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                query.append(" ").append(sortOrder);
+            }
         }
-        TypedQuery<Negocio> q = em.createQuery(queryBuilder.toString(), Negocio.class);
-        q.setParameter("nya", nya);
-        q.setParameter("email", email);
+    	
+        TypedQuery<Negocio> q = em.createQuery(query.toString(), Negocio.class);
+        
+        if (nya == null || nya.length() == 0){
+        	q.setParameter("nya", nya);
+        }
+        
+        if (email == null || email.length() == 0){
+        	q.setParameter("email", email);
+        }
+        
         return q;
     }
     
